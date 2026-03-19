@@ -1,73 +1,50 @@
-# React + TypeScript + Vite
+# Html Cleaner
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Pequena utilidade que vi sendo necessária onde o usuário precisa limpar HTML mantendo apenas o texto puro, com interface inspirada visualmente em Persona 3 que foi reaproveitado do meu porfólio e claramente foi vibecodado, servindo majoritamente pela utilidade.
 
-Currently, two official plugins are available:
+## Descrição
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Este projeto é uma pequena aplicação React + TypeScript que permite colar blocos de HTML (por exemplo perguntas/alternativas copiadas de conteúdo com tags) e obter somente o texto limpo. A interface foi estilizada conforme referência fornecida (círculos de transição, faixas e um visual azul inspirado em Persona 3).
 
-## React Compiler
+Funcionalidades principais:
+- Campo de entrada onde você cola HTML
+- Saída seletável (textarea) contendo o texto limpo
+- Botão "Copiar" para enviar o texto limpo para a área de transferência
+- Atalho `Ctrl+L` (Windows/Linux) / `Cmd+L` (macOS) para limpar (remover tags) do conteúdo do campo de entrada
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Como executar
 
-## Expanding the ESLint configuration
+Pré-requisitos: Node.js (>=16 recomendado) e `npm`.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+No diretório do projeto:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Abra o endereço mostrado pelo Vite (por padrão `http://localhost:5173`).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Comandos úteis:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- `npm run dev` — roda o servidor de desenvolvimento
+- `npm run build` — cria build de produção
+- `npm run preview` — prevê a versão de produção localmente
+
+## Uso
+
+1. Cole HTML no campo "HTML input".
+2. O campo de saída mostra o texto limpo automaticamente.
+3. Use o botão **Copiar** para copiar o texto limpo para a área de transferência.
+4. Pressione `Ctrl+L` (ou `Cmd+L` no macOS) para substituir o conteúdo do input pelo texto limpo.
+
+O campo de saída é um `textarea` somente leitura, mas permite seleção com o mouse para copiar manualmente se preferir.
+
+## Arquivos importantes
+
+- `src/components/HtmlCleaner.tsx` — componente principal com a lógica de limpeza, atalho e cópia.
+- `src/persona3.scss` — estilos inspirados (transições, layout e cores).
+- `src/App.tsx` — ponto de entrada que renderiza o `HtmlCleaner`.
+
+
+---
